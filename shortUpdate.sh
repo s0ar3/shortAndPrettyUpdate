@@ -25,7 +25,7 @@ if [[ ${1} == "-r" ]]; then
 
     checkConnForIssues "${remote_server}" "${USER}" "${PASSWORD}"
 
-        sshpass -p "${PASSWORD}" ssh -o ConnectTimeout=1 -o StrictHostKeyChecking=no -q "${USER}"@"${remote_server}" << EOF
+        sshpass -p "${PASSWORD}" ssh -o ConnectTimeout=1 -o StrictHostKeyChecking=no -q "${USER}"@"${remote_server}" << .
 
         linux_family=\$(awk -F "=" '/ID_LIKE/{print \$2}' /etc/*release | grep -Eio -e "rhel" -e "debian")
         linux_distro=\$(awk -F "=" '/PRETTY_NAME/{print \$2}' /etc/*release | head -n 1 | awk -F "\"" '{print \$2}')
@@ -68,7 +68,7 @@ if [[ ${1} == "-r" ]]; then
         printLines 80
         unset USER
         unset PASSWORD
-EOF
+.
 
     unset USER
     unset PASSWORD
